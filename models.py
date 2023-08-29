@@ -72,9 +72,9 @@ class Cart:
         """
         if product in self.products and remove_count is None:
             self.products.pop(product)
-        elif product in self.products and remove_count >= product.quantity:
+        elif product in self.products and remove_count >= self.products[product]:
             self.products.pop(product)
-        elif product in self.products and remove_count < product.quantity:
+        elif product in self.products and remove_count < self.products[product]:
             self.products[product] = self.products[product] - remove_count
 
     def clear(self):
@@ -92,3 +92,5 @@ class Cart:
         """
         for product, quantity in self.products.items():
             product.buy(quantity)
+        self.clear()
+
